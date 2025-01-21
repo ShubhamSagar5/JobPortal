@@ -3,6 +3,8 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import Connection from './utils/DBConnection.js';
+import userRoutes from './routes/user.routes.js'
+
 
 dotenv.config({});
 
@@ -17,10 +19,10 @@ app.use(express.urlencoded({extended:true}));
 app.use(cookieParser()); 
 
 
+app.use("/api/v1/user",userRoutes)
+
+
 const PORT = process.env.PORT || 3000;
-
-
-
 Connection()
 .then(()=>{
     app.listen(PORT,()=>{
