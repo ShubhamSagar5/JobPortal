@@ -110,3 +110,30 @@ export const logout = async(req,res) => {
         })
     }
 }
+
+export const updateProfile = async(req,res) => {
+    try {
+        const {fullName,email,phoneNumber,bio,skills} = req.body
+        const resume = req.file
+        const userId = req.userId 
+        const updateUser = await User.findByIdAndUpdate(userId,{
+            fullName,
+            email,
+            phoneNumber,
+            "profile.bio" : bio,
+            "profile.skills":skills
+        },{new:true})
+
+        return res.status(200).json({
+            success:true,
+            message:"Profile Updated Successfully",
+            updateUser
+        })
+
+    } catch (error) {
+         return res.status(500).json({
+            success:false,
+            message:error.message
+        })
+    }
+}

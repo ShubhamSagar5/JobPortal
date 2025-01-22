@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import Connection from './utils/DBConnection.js';
 import userRoutes from './routes/user.routes.js'
+import companyRoutes from './routes/company.routes.js'
 
 
 dotenv.config({});
@@ -19,7 +20,8 @@ app.use(express.urlencoded({extended:true}));
 app.use(cookieParser()); 
 
 
-app.use("/api/v1/user",userRoutes)
+app.use("/api/v1/user",userRoutes);
+app.use("/api/v1/company",companyRoutes)
 
 
 const PORT = process.env.PORT || 3000;
