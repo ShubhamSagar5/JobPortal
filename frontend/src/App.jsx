@@ -1,12 +1,15 @@
 import React from 'react'
-import { deepOrange, deepPurple } from '@mui/material/colors';
-import Avatar from '@mui/material/Avatar';
+import Home from './Pages/Home'
+import Navbar from './components/Navbar'
+
 
 
 const App = () => {
   return (
-    <div>App</div>
-          <Avatar sx={{ bgcolor: deepPurple[500] }}>OP</Avatar>
+    <div>
+    <Navbar/>
+      <Home/>
+    </div>
 
   )
 }
