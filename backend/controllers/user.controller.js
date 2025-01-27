@@ -4,9 +4,9 @@ import User from '../Models/user.model.js'
 
 export const register = async(req,res) => {
     try {
-        const {fullName,email,phoneNumber,password,role} = req.body
+        const {fullName,email,phoneNumber,password,role,profilePhoto} = req.body
         
-        if(!fullName || !email || !phoneNumber || !password  || !role){
+        if(!fullName || !email || !phoneNumber || !password  || !role ){
             return res.status(400).json({
                 success:false,
                 message:"Something Missing"
@@ -20,7 +20,7 @@ export const register = async(req,res) => {
             email,
             phoneNumber,
             password:hashPassword,
-            role
+            role 
         })
 
         await newUser.save() 

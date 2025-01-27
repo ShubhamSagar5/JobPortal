@@ -8,11 +8,13 @@ import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import Person2Icon from '@mui/icons-material/Person2';
 import LogoutIcon from '@mui/icons-material/Logout';
+import {Link, useNavigate} from 'react-router-dom'
+
 
 const Navbar = () => {
 
-    const login = true
-    
+    const login = false
+    const navigate = useNavigate()
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [open, setOpen] = React.useState(false);
     const [placement, setPlacement] = React.useState();
@@ -27,24 +29,24 @@ const Navbar = () => {
     <div className=' p-3  shadow-lg'>
         <div className='mx-[3%]'><div className='flex items-center justify-between mx-auto'>
             <div>
-                <div className='font-bold text-2xl cursor-pointer'>Job<span className='text-[#f83002]'>Hunt</span></div>
+                <div className='font-bold text-2xl cursor-pointer' onClick={()=>(navigate("/"))}>Job<span className='text-[#f83002]'>Hunt</span></div>
             </div>
             <div className='flex justify-between items-center gap-8'>
             <div >
                 <ul className='flex justify-between items-center gap-8 cursor-pointer'>
-                <li>Home</li>
-                <li>Jobs</li>
-                <li>Browse</li>
+             <Link to={"/"}><li>Home</li></Link>   
+             <Link to={"/jobs"}><li>Jobs</li></Link> 
+             <Link to={"/browse"}><li>Browse</li></Link> 
                 </ul>
             </div>
             {
                 !login ? <div className='flex gap-1'>
-                <Button  variant="contained">Login</Button> 
-                <Button  variant="contained">Signup</Button>
+                <Button  variant="outlined" onClick={()=>(navigate("/login"))}>Login</Button> 
+                <Button  variant="contained" onClick={()=>(navigate("/signup"))}>Signup</Button>
                 </div> : <div><Avatar onClick={handleClick('bottom')} className='cursor-pointer' sx={{ bgcolor: deepPurple[500] }}>OP</Avatar>
             <Popper
         // Note: The following zIndex style is specifically for documentation purposes and may not be necessary in your application.
-        sx={{ zIndex: 1200 }}
+        sx={{ zIndex: 1200,}}
         open={open}
         anchorEl={anchorEl}
         placement={placement}
@@ -53,7 +55,7 @@ const Navbar = () => {
         {({ TransitionProps }) => (
           <Fade {...TransitionProps} timeout={350}>
             <Paper>
-              <Typography sx={{ p: 2 }}>
+              <Typography sx={{ p: 2,mt:1.7, }}>
                 <div className='flex flex-col gap-4'>
                     <div className='flex gap-3'>
                     <Avatar onClick={handleClick('bottom')} className='cursor-pointer' sx={{ bgcolor: deepPurple[500] }}>OP</Avatar>
