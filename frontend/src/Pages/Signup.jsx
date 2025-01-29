@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import { USER_API_ENDPOINT } from '../utils/API';
 import {toast} from 'react-toastify'
+import { useDispatch, useSelector } from 'react-redux';
 
 
 const Signup = () => {
@@ -20,6 +21,9 @@ const Signup = () => {
     file:"",
     role:""
   });
+
+  const loading = useSelector((store)=>store?.auth?.loading);
+  const dispatch = useDispatch();
 
   const changeHandler = (e) => {
     setFormInputData({
@@ -65,7 +69,10 @@ const Signup = () => {
   
   return (
     <div>
+       <div className='sticky w-full top-0 bg-white'>
         <Navbar/>
+    </div>
+ 
         <div className='flex justify-center p-10 ' >
         <form onSubmit={handleSubmit} className='shadow-sm p-4 md:w-4/12'>
         <p className='text-xl font-semibold 's>Signup Form </p>
@@ -177,7 +184,7 @@ const Signup = () => {
 
             <fieldset>
               <legend className="text-sm/6 font-semibold text-gray-900">Role</legend>
-              <div className="mt-6 space-y-6">
+              <div className="mt-6 space-y-6 flex gap-10">
                
                 <div className="flex items-center gap-x-3">
                   <input
@@ -189,11 +196,11 @@ const Signup = () => {
                     checked={formInputData.role === "student"}
                     className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
                   />
-                  <label htmlFor="student" className="block text-sm/6 font-medium text-gray-900">
+                  <label htmlFor="student" className=" text-sm/6 font-medium text-gray-900">
                     Student
                   </label>
                 </div>
-                <div className="flex items-center gap-x-3">
+                <div className="flex items-center gap-x-3 -mt-[1.50rem]">
                   <input onChange={changeHandler}
                     id="recruiter"
                     name="role"
@@ -202,7 +209,7 @@ const Signup = () => {
                     type="radio"
                     className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
                   />
-                  <label htmlFor="recruiter" className="block text-sm/6 font-medium text-gray-900">
+                  <label htmlFor="recruiter" className=" text-sm/6 font-medium text-gray-900">
                     Recruiter
                   </label>
                 </div>
@@ -214,12 +221,18 @@ const Signup = () => {
 
       <div className="mt-6 flex flex-col gap-4 w-full">
        
-        <button
-          type="submit"
-          className="w-12/12 rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-        >
-          SignUp
-        </button>
+      {loading ? (
+              <button className="w-full disabled rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" disabled={loading}>
+                Loading...
+              </button>
+            ) : (
+              <button
+                type="submit"
+                className="w-full rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
+                Signup
+              </button>
+            )}
         <p>Alreday Have an Account ? <span className='text-blue-600'><Link to={"/login"}>Login</Link></span></p>
       </div>
     </form>

@@ -1,0 +1,7 @@
+.disabled {
+    background-color: #d1d5db; /* Gray */
+    color: #6b7280; /* Darker gray */
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+  

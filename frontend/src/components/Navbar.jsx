@@ -26,7 +26,7 @@ const Navbar = () => {
       };
   
     return (
-    <div className=' p-3  shadow-lg'>
+    <div className=' p-3  shadow-lg '>
         <div className='mx-[3%]'><div className='flex items-center justify-between mx-auto'>
             <div>
                 <div className='font-bold text-2xl cursor-pointer' onClick={()=>(navigate("/"))}>Job<span className='text-[#f83002]'>Hunt</span></div>
