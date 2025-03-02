@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken'
+import User from '../Models/user.model.js';
 
 
 export const isAuthenticated = async(req,res,next) => {
@@ -22,6 +23,31 @@ export const isAuthenticated = async(req,res,next) => {
         return res.status(500).json({
             success:false,
             message:"Error in isAuthenticated Middleware" + error.message
+        })
+    }
+}
+
+export const isRecruiter = async(req,res,next) => {
+    try {
+        
+        const recruiterId = req.userId 
+
+        const isRecruiter = await User.findById(recruiterId)
+
+        if(isRecruiter?.role == "recruiter"){
+            next()
+        }
+
+        return res.status(403).json({
+                success:false,
+                message:"Only Recuriter is Allowed"
+            })
+        
+
+    } catch (error) {
+        return res.status(500).json({
+            success:false,
+            message:error?.message
         })
     }
 }
