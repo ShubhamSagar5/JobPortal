@@ -17,9 +17,9 @@ const CategoaryCrousel = () => {
       };
     
       const softwareRoles = [
-        "Frontend Developer",
+        "FrontendDeveloper",
         "Backend Developer",
-        "Full Stack Developer",
+        "FullStack Dev",
         "DevOps Engineer",
         "Mobile Developer",
         "Data Engineer",
@@ -31,9 +31,10 @@ const CategoaryCrousel = () => {
         <Box sx={{ maxWidth: 600, margin: "auto" }}>
           <Slider {...settings} className='m-2'>
             {softwareRoles.map((item, index) => (
-                <Button variant="outlined"  sx={{ padding: "8px 16px", marginRight: "10px" }}  key={index} className='m-2'>{item}</Button>
+                <Button variant="outlined"  sx={{ padding: "8px 16px", }}  key={index} className='m-2'>{item}</Button>
             ))}
           </Slider>
+        
         </Box>
       );
 }

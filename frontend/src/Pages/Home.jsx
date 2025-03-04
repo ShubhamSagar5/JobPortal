@@ -2,6 +2,8 @@ import React from 'react'
 import Navbar from '../components/Navbar'
 import Herosection from '../components/Herosection'
 import CategoaryCrousel from '../components/CategoaryCrousel'
+import LatestJobs from '../components/LatestJobs'
+import Footer from '../components/Footer'
 
 const Home = () => {
   return (
@@ -10,6 +12,8 @@ const Home = () => {
      <Navbar/>
      <Herosection/>
      <CategoaryCrousel/>
+     <LatestJobs/>
+     <Footer/>
      </div> 
     
     </div>

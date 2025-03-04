@@ -49,12 +49,15 @@ const Signup = () => {
     formData.append("file",formInputData.file);
     formData.append("role",formInputData.role);
 
+    console.log(formData)
+
     const res = await axios.post(`${USER_API_ENDPOINT}/register`,formData,{
       headers:{
         "Content-Type":"multipart/form-data"
       },
       withCredentials:true
     });
+    
     if(res.data.success){
       console.log(res.data);
       navigate("/login")
@@ -62,7 +65,7 @@ const Signup = () => {
     }
 
   } catch (error) {
-    toast.error(error.response.data.message)
+    toast.error(error?.response?.data?.message)
     console.log(error)
   }
  }
